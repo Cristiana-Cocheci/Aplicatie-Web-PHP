@@ -1,2 +1,18 @@
 # Aplicatie-Web-PHP
 Proiect PHP+MySQL
+
+Descriere:
+  O aplicatie a unei companii de transport in comun. 
+  Aplicatia are doua functionalitati:
+    - clientii se pot loga si pot "cumpara" bilete sau abonamente
+    - exista o harta a Orasului cu statiile si liniile existente, cu un click pe statii se pot afla informatii despre statie si despre cand soseste urmatorul vehicul. 
+    - pe baza clickurilor pe statii, detinatorul aplicatiei va avea acces la stadiul de "aglomerare" al traseelor in fiecare zi
+
+Baza de date:
+  CLIENTI: nume, prenume, email, parola
+  BILETE: tip bilet, data cumparare, data activare, data expirare
+  (mai multi clienti au mai multe bilete)
+
+  VEHICULE: detalii vehicul,sofer, traseu curent, locatie actuala(va fi actualizata in permanenta l aun anumit interval de timp)
+  STATII: locatie, statie precedenta, statie urmatoare, capat1 traseu, capat2 traseu
+  VIZITARE_STATIE: statie, data vizitarii, ora vizitarii
