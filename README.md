@@ -23,3 +23,9 @@ Proiect PHP+MySQL
  * **STATII**: locatie, statie precedenta, statie urmatoare, capat1 traseu, capat2 traseu
   
  * **VIZITARE_STATIE**: statie, data vizitarii, ora vizitarii
+
+**Mod de utilizare**
+  - se poate creea un cont printr-un formular, asa apare un client nou in baza de date
+  - atunci cand o statie este accesata, aceasta informatie e transmisa catre baza de date
+  - la un interval de timp setat, in timpul activitatii site-ului, locatiile autobuzelor trebuie modificate in baza de date
+  - timpul in care urmatorul autobuz ajunge in statie este determinat printr-un query in baza de date asupra tabelului de vehicule
