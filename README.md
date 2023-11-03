@@ -18,7 +18,7 @@ Proiect PHP+MySQL
   
   * (mai multi clienti au mai multe bilete)
 
- * **VEHICULE**: detalii vehicul,sofer, traseu curent, locatie actuala(va fi actualizata in permanenta l aun anumit interval de timp)
+ * **VEHICULE**: detalii vehicul, sofer, traseu curent, locatie actuala(va fi actualizata in permanenta la un anumit interval de timp)
   
  * **STATII**: locatie, statie precedenta, statie urmatoare, capat1 traseu, capat2 traseu
   
