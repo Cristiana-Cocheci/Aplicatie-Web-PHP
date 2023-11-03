@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      
+      <link rel="stylesheet" href="open.css" type="text/css">
+   
+      <title>neverlanes</title>
+      <meta charset="utf-8">
+      <meta name="autor" content="cristi">
+      <meta name="description" content="pagina web?">
+      <meta name="keywords" content="neverlanes">
+      <!--<link rel="icon" type="image/x-icon" href="C:\Users\Paula\Desktop\anul 1\sem2\tehnici web\Spongrio.webp">-->
+     
+      <!--<link rel="stylesheet" href="C:\Users\Paula\Desktop\anul 1\sem2\tehnici web\style.css" type="text/css">-->
+  </head>
+   <body>
+      <div class="header">
+         <h1>
+             Aplicatie Web PHP
+         </h1>
+     </div>
+      <nav class="meniu">
+         <a class="meniu" href="#Descriere">Descriere</a>
+         <a class="meniu" href="#Baza-de-date">Baza de date</a>
+         <a class="meniu" href="#Mod-de-utilizare">Mod de utilizare</a>
+     </nav>
+     <div>
+      <h3 id ="Descriere">
+          Descriere
+      </h3>
+      <p>
+         O aplicatie a unei companii de transport in comun.
+      </p>
+      <p>
+         Aplicatia are mai multe <strong>functionalitati:</strong>
+      </p>
+
+      <ul>
+          <li>Clientii se pot loga si pot "cumpara" bilete sau abonamente</li>
+          <li>Exista o harta a Orasului cu statiile si liniile existente, cu un click pe statii se pot afla informatii despre statie si despre cand soseste urmatorul vehicul.</li>
+          <li>Pe baza clickurilor pe statii, detinatorul aplicatiei va avea acces la stadiul de "aglomerare" al traseelor in fiecare zi</li>
+          
+      </ul>
+  </div>
+  <div>
+   <h3 id ="Baza-de-date">
+       Baza de date
+   </h3>
+   
+   <ul>
+       <li><b>CLIENTI:</b> nume, prenume, email, parola</li>
+       <li><b>BILETE:</b>tip bilet, data cumparare, data activare, data expirare       </li>
+       <li>(mai multi clienti au mai multe bilete)</li>
+       <li><b>VEHICULE:</b> detalii vehicul, sofer, traseu curent, locatie actuala(va fi actualizata in permanenta la un anumit interval de timp)</li>
+       <li><b>STATII:</b> locatie, statie precedenta, statie urmatoare, capat1 traseu, capat2 traseu</li>
+       <li><b>VIZITARE_STATIE:</b> statie, data vizitarii, ora vizitarii</li>
+       
+   </ul>
+</div>
+<div>
+   <h3 id ="Mod-de-utilizare">
+       Mod de utilizare
+   </h3>
+   
+   <ul>
+       <li>se poate creea un cont printr-un formular, asa apare un client nou in baza de date</li>
+       <li>atunci cand o statie este accesata, aceasta informatie e transmisa catre baza de date</li>
+       <li>la un interval de timp setat, in timpul activitatii site-ului, locatiile autobuzelor trebuie modificate in baza de date</li>
+       <li>timpul in care urmatorul autobuz ajunge in statie este determinat printr-un query in baza de date asupra tabelului de vehicule</li>
+       <li>adminul poate adauga statii, modifica trasee, etc</li>
+       
+   </ul>
+</div>
+   </body>
+</html>

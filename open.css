@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(143, 175, 171);
+    display: grid;
+    
+}
+header{
+   display: inline-block;
+   text-align: center;
+
+}
