@@ -1,7 +1,7 @@
 <?php
 $servername = "mysql-neverlanes.alwaysdata.net";
 $username = "336043";
-$password = "Elijah.R.Daneel";
+$password = "m.2a*Z!#mV!9vWH";
 $dbname = "neverlanes_database";
 
 // Create connection
@@ -22,8 +22,12 @@ if(count($_POST)>0) {
     $query="select * from CLIENTS where UPPER(username) = UPPER('".$username."') and password = '".$password."';";
 
     $result = $link->query($query);
-    // print_r ($result);
+    //print_r ($result);
     if($result->num_rows >0){
+        session_start();
+        $_SESSION["username"]=$username;
+        $row = $result->fetch_assoc();
+        $_SESSION["client_id"]=$row['client_id'];
         echo "OK!";
         header("Location: site_entry.php");
     }

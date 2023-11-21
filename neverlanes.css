@@ -1,0 +1,32 @@
+#tabel_bilete ul {
+    border: 1px solid #d2a580;
+    margin: 1vi;
+    padding: 2vi;
+    width: 35vi; 
+    display: inline-block;
+    list-style: none;
+    background-color: #f8f0e1;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  #tabel_bilete li {
+    padding: 0.6vi;
+    text-align: left;
+  }
+  
+  #tabel_bilete li:nth-child(even) {
+    background-color: #f4ebd2;
+    color:#865832;
+  }
+  
+  #tabel_bilete li:nth-child(odd) {
+    background-color: #f8f0e1;
+    color:#bf8e66;
+  }
+  
+  #tabel_bilete li:first-child {
+    background-color:  rgb(204, 163, 92);
+    color: white;
+    font-weight: bold;
+  }
+  

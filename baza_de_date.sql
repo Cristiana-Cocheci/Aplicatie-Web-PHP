@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump --m.2a*Z!#mV!9vWH
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --

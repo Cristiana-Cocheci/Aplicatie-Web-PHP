@@ -20,6 +20,8 @@
          NEVERLANES
       </h1>
    </div>
+   <?php require "header.php"?>
+      
    <FORM method="POST" action="show_route.php">
       <table>
          <tr><td>Check an available route!</td></tr>
@@ -27,7 +29,7 @@
             <td>
                <select name="route">
                   <?php
-                  $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "Elijah.R.Daneel", "neverlanes_database");
+                  $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
 
                   if (!$link) {
                      echo "Error: Unable to connect to MySQL.";
@@ -54,7 +56,43 @@
          </tr>
       </table>
    </FORM>
+   <div id="bilete">
+      Here are your tickets:
+      
+      <ul id="tabel_bilete">
+        
+      <?php
+            $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
+               if (!$link) {
+                  echo "Error: Unable to connect to MySQL.";
+                  exit;
+            }
 
+            $query = "SELECT * FROM TICKETS t JOIN TICKETS_TYPES tt ON (t.type_id=tt.type_id) WHERE client_id ='".$_SESSION["client_id"]."';";
+
+            //echo $query;
+
+            foreach ($link->query($query) as $row) {
+               print '<ul>';
+               print '<li>Ticket Type:<br> ' . $row['type_name'] . '</li>';
+               print '<li>Valability: ' . $row['valability'] . '</li>';
+               print '<li>Price: ' . $row['price'] . '</li>';
+               print '<li>Purchase Date: ' . $row['purchase_date'] . '</li>';
+               if($row['activation_date'] == NULL){
+                  print '<li>Activation Date: -</li>';
+                  print '<li>Expiry Date: -</li>';
+               }
+               else{
+                  print '<li>Activation Date: ' . $row['activation_date'] . '</li>';
+               print '<li>Expiry Date: ' . $row['expiry_date'] . '</li>';
+               }
+               print '</ul>';
+            }
+                 
+            mysqli_close($link);
+      ?>
+      </ul>
+   </div>
 </body>
 
 </html>

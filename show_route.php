@@ -1,7 +1,7 @@
 <?php
 $servername = "mysql-neverlanes.alwaysdata.net";
 $username = "336043";
-$password = "Elijah.R.Daneel";
+$password = "m.2a*Z!#mV!9vWH";
 $dbname = "neverlanes_database";
 
 $link = mysqli_connect($servername, $username, $password, $dbname);
