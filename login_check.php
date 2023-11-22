@@ -29,7 +29,7 @@ if(count($_POST)>0) {
         $row = $result->fetch_assoc();
         $_SESSION["client_id"]=$row['client_id'];
         echo "OK!";
-        header("Location: site_entry.php");
+        header("Location: home_page.php");
     }
     else{
         echo "Nu am gasit acest username cu aceasta parola ;(";

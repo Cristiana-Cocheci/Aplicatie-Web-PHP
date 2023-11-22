@@ -1,0 +1,52 @@
+body{
+    
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "coloana1" "pagina" "coloana2";
+}
+.pagina{
+    grid-area: "pagina";
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 0.5fr 1fr 6fr 2fr;
+    grid-template-areas:
+            "header header header header header"
+            "menu menu menu menu menu"
+            "form form form form form";
+    justify-content: center; 
+    align-items: center; 
+        
+}
+.header {
+    grid-area: header; 
+}
+
+.menu {
+    grid-area: menu; 
+}
+
+form {
+    grid-area: form; 
+}
+.header,
+.menu,
+form {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+/*
+#coloana1 #coloana2 img {
+    max-width: 100%; 
+    height:100%;
+    object-fit: fill;
+   
+}
+#coloana1{
+    grid-area: "coloana1";
+}
+#coloana2{
+    grid-area: "coloana2";
+}
+*/
