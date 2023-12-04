@@ -32,7 +32,11 @@
    </ul>
    
    <div id="bilete">
-      Here are your tickets:
+      <?php
+         if($_SESSION["username"]!=-1){
+            print "<p>Here are your tickets: </p>";
+         }
+      ?>
       
       <ul id="tabel_bilete">
         

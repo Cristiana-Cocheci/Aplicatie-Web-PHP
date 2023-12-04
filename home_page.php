@@ -3,7 +3,7 @@
 
 <head>
    <link rel="stylesheet" href="home_page.css" type="text/css">
-
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap">
    <title>neverlanes</title>
    <meta charset="utf-8">
    <meta name="autor" content="cristi">
@@ -15,24 +15,24 @@
 </head>
 
 <body>
-    <div id="coloana1"><!--<img src="coloana.jpg" alt="greek column">--></div>
+    <div class="coloana" id="coloana1"><img src="coloana.png" alt="greek column"></div>
     <div class="pagina">
         <div class="header">
             <h1>
                 NEVERLANES
             </h1>
         </div>
-   <?php require "header.php"?>
+   <?php require "header.php"; ?>
         <div class="menu">
             <ul>
                 <li><a href="login.html">LOGIN</a></li>
-                <li><a href="my_account.php">MY ACCOUNT</a></li>
+                <li><a href="my_account_check.php">MY ACCOUNT</a></li>
             </ul>
         </div>
       
         <FORM method="POST" action="show_route.php">
             <table>
-                <tr><td>Check an available route!</td></tr>
+                
                 <tr>
                     <td>
                     <select name="route">
@@ -55,18 +55,20 @@
                         mysqli_close($link);
                         ?>
 
-                        <option SELECTED VALUE="">Select...</option>
+                        <option SELECTED VALUE="">Choose a route!</option>
                     </select>
                     </td>
                 </tr>
                 <tr>
-                    <td><INPUT TYPE="submit" VALUE="Click here to see selected route."></td>
+                    <td><INPUT TYPE="submit" VALUE="Check it out!"></td>
                 </tr>
             </table>
         </FORM>
+        <div class="harta">
+                    </div>
     </div>
-   <div id="coloana2">
-    <!--<img src="coloana.jpg" alt="greek column">-->
+   <div class="coloana" id="coloana2">
+    <img src="coloana.png" alt="greek column">
    </div>
 </body>
 
