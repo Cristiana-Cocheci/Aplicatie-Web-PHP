@@ -27,10 +27,21 @@
         if($_SESSION["username"]==-1){
             print '<li><a href="login.php">Want to login? Click here!</a></li>';
         }
+        
    ?>
    <li><a href="delete_acc.html">DELETE ACCOUNT</a></li>
    </ul>
    
+   <div id="date_client">
+   <?php
+         if($_SESSION["username"]!=-1){
+            print '<a class ="client_data">Username: '.$_SESSION["username"].'</a>';
+            print '<a class ="client_data">Name: '.$_SESSION["first_name"].' '.$_SESSION["last_name"].'</a>';
+            print '<a class ="client_data">Account type: '.$_SESSION["role"].'</a>';
+           
+         }
+      ?>
+   </div>
    <div id="bilete">
       <?php
          if($_SESSION["username"]!=-1){
@@ -50,8 +61,9 @@
             $query = "SELECT * FROM TICKETS t JOIN TICKETS_TYPES tt ON (t.type_id=tt.type_id) WHERE client_id ='".$_SESSION["client_id"]."';";
 
             //echo $query;
-
+            $exista_bilete = 0;
             foreach ($link->query($query) as $row) {
+               $exista_bilete = 1;
                print '<ul>';
                print '<li>Ticket Type:<br> ' . $row['type_name'] . '</li>';
                print '<li>Valability: ' . $row['valability'] . '</li>';
@@ -67,10 +79,49 @@
                }
                print '</ul>';
             }
+            if($exista_bilete == 0){
+               print '<ul><li> No tickets available </li></ul>';
+            }
                  
             mysqli_close($link);
       ?>
       </ul>
+   </div>
+   <div id="tabel_trasee">
+      <?php
+      if($_SESSION['role']=="DRIVER"){
+         $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
+         if (!$link) {
+            echo "Error: Unable to connect to MySQL.";
+            exit;
+         }
+
+         $query = "SELECT * FROM VEHICLES v JOIN ROUTES r ON (v.route_id=r.route_id)
+                                            JOIN VEHICLE_TYPE vt ON (v.vehicle_type = vt.type_id)
+                                            JOIN DRIVERS d ON (v.driver_id = d.driver_id)
+                                            JOIN CLIENTS c ON (d.client_id = c.client_id)
+                                            JOIN LOCATIONS l ON (l.location_id = v.position_id)
+         WHERE c.client_id ='".$_SESSION["client_id"]."';";
+         $result = $link->query($query);
+         print '<a> You have '.$result->num_rows.' active route(s).</a><br>';
+           
+         foreach ($link->query($query) as $row) {
+            //print_r($row);
+            print "<ul>";
+            print '<li>Route Name:<br> ' . $row['route_name'] . '</li>';
+            print '<li>Route length: ' . $row['no_stops'] . '</li>';
+            print '<li>Current location: ' . $row['location_name'] . '</li>';
+            print '<li>Vehicle type: ' . $row['vehicle_name'] . '</li>';
+            
+             print "</ul>";
+         }
+         
+        
+
+         mysqli_close($link);
+      }
+         
+      ?>
    </div>
 </body>
 

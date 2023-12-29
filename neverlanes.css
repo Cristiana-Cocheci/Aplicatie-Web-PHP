@@ -30,3 +30,40 @@
     font-weight: bold;
   }
   
+#date_client{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#tabel_trasee ul {
+  border: 1px solid #9980d2;
+  margin: 1vi;
+  padding: 2vi;
+  width: 35vi; 
+  display: inline-block;
+  list-style: none;
+  background-color: #e7e1f8;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#tabel_trasee li {
+  padding: 0.6vi;
+  text-align: left;
+}
+
+#tabel_trasee li:nth-child(even) {
+  background-color: #ddd2f4;
+  color:#363286;
+}
+
+#tabel_trasee li:nth-child(odd) {
+  background-color: #e7e1f8;
+  color:#7b66bf;
+}
+
+#tabel_trasee li:first-child {
+  background-color:  rgb(96, 92, 204);
+  color: white;
+  font-weight: bold;
+}

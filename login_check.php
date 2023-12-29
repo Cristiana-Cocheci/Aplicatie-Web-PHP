@@ -48,6 +48,10 @@ if(count($_POST)>0) {
                     $_SESSION["username"]=$username;
                     $row = $result->fetch_assoc();
                     $_SESSION["client_id"]=$row['client_id'];
+                    $_SESSION["first_name"]=$row['first_name'];
+                    $_SESSION["last_name"]=$row['last_name'];
+                    $_SESSION["email"]=$row['email'];
+                    $_SESSION["role"]=$row['role'];
                     echo "OK!";
                     header("Location: home_page.php");
                 }

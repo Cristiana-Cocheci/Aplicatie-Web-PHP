@@ -3,7 +3,7 @@
 <body>
   <h2>Create an account for free!</h2>
   <div>Already have an account?</div>
-  <a href="login.html">Click here to login</a>
+  <a href="login.php">Click here to login</a>
 <FORM method="POST" action="create_check.php">
 <table border=0 width="40%" align="left">
   <tr>
@@ -26,6 +26,19 @@
         <td>Password*: </td>
         <td><INPUT TYPE="text" name="password"></td>
   </tr>
+  <tr>
+    
+                            
+                           
+    <td>Account type*: </td>
+    <td><select name="account_type" required>
+      <option SELECTED VALUE="">NOT SELECTED</option>
+      <option>USER</option>
+      <option>ADMIN</option>
+      <option>DRIVER</option>
+
+    </td>
+</tr>
     <tr>
     <td><INPUT TYPE="reset" VALUE="reset"></td>
     <td><INPUT TYPE="submit" VALUE="send"></td>
