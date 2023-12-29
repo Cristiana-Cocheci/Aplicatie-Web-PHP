@@ -4,6 +4,8 @@
 <head>
    <link rel="stylesheet" href="home_page.css" type="text/css">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap">
+   <script type="text/javascript" src="harta.js"></script>
+
    <title>neverlanes</title>
    <meta charset="utf-8">
    <meta name="autor" content="cristi">
@@ -25,7 +27,7 @@
    <?php require "header.php"; ?>
         <div class="menu">
             <ul>
-                <li><a href="login.html">LOGIN</a></li>
+                <li><a href="login.php">LOGIN</a></li>
                 <li><a href="my_account_check.php">MY ACCOUNT</a></li>
             </ul>
         </div>
@@ -64,7 +66,8 @@
                 </tr>
             </table>
         </FORM>
-        <div class="harta">
+        <div class="harta" id="harta">
+        <!--<canvas id="canvmap" width="300" height="300"></canvas>-->
                     </div>
     </div>
    <div class="coloana" id="coloana2">

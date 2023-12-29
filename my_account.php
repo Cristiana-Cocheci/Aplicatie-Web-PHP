@@ -25,7 +25,7 @@
    <?php 
         require "header.php";
         if($_SESSION["username"]==-1){
-            print '<li><a href="login.html">Want to login? Click here!</a></li>';
+            print '<li><a href="login.php">Want to login? Click here!</a></li>';
         }
    ?>
    <li><a href="delete_acc.html">DELETE ACCOUNT</a></li>

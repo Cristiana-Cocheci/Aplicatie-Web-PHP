@@ -85,7 +85,7 @@ html, body {
 body {
     background-color: rgb(184, 241, 241);
     display: grid;
-    grid-template-columns: 20% 60% 20%; /* Set columns to be 10% each */
+    grid-template-columns: 10% 80% 10%; /* Set columns to be 10% each */
     grid-template-rows: auto;
     grid-template-areas: "coloana1" "pagina" "coloana2";
     font-family: 'EB Garamond', serif;
@@ -99,7 +99,7 @@ body {
     background-color: rgb(184, 241, 241);
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
-    grid-template-rows: 3fr 0.5fr 1.4fr 6fr 2fr;
+    grid-template-rows: 20% 10% 30% 35% 5%;
     grid-template-areas:
         "header header header header header"
         "menu menu menu menu menu"
@@ -158,15 +158,17 @@ form {
 
 .header,
 .menu,
-.harta,
+.harta, .captcha-container,  
 form {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
+
 img{
     width:100%;
     height:100%;
-    object-fit: fill;
+    object-fit: scale-down;
 
 }

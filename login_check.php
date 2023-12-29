@@ -1,4 +1,7 @@
-<?php
+<?php 
+  
+echo $returnMsg;
+
 $servername = "mysql-neverlanes.alwaysdata.net";
 $username = "336043";
 $password = "m.2a*Z!#mV!9vWH";
@@ -15,29 +18,52 @@ if (!$link) {
 }
 
 if(count($_POST)>0) {
-    $username=$_POST['username'];
-    $password=$_POST['password'];
-    // echo $username;
-    // echo $password;
-    $query="select * from CLIENTS where UPPER(username) = UPPER('".$username."') and password = '".$password."';";
-
-    $result = $link->query($query);
-    //print_r ($result);
-    if($result->num_rows >0){
-        session_start();
-        $_SESSION["username"]=$username;
-        $row = $result->fetch_assoc();
-        $_SESSION["client_id"]=$row['client_id'];
-        echo "OK!";
-        header("Location: home_page.php");
+    // Form fields validation check
+    if(!empty($_POST['username']) && !empty($_POST['password'])){ 
+         
+        // reCAPTCHA checkbox validation
+        if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
+            // Google reCAPTCHA API secret key 
+            $secret_key = '6LcNjTwpAAAAAIfq1A-BhmzI_NNQqmvJyETG5Osi'; 
+             
+            // reCAPTCHA response verification
+            $verify_captcha = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']); 
+            
+            // Decode reCAPTCHA response 
+            $verify_response = json_decode($verify_captcha); 
+             
+            // Check if reCAPTCHA response returns success 
+            if($verify_response->success){ 
+                
+                $username=$_POST['username'];
+                $password=$_POST['password'];
+                // echo $username;
+                // echo $password;
+                $query="select * from CLIENTS where UPPER(username) = UPPER('".$username."') and password = '".$password."';";
+            
+                $result = $link->query($query);
+                //print_r ($result);
+                if($result->num_rows >0){
+                    session_start();
+                    $_SESSION["username"]=$username;
+                    $row = $result->fetch_assoc();
+                    $_SESSION["client_id"]=$row['client_id'];
+                    echo "OK!";
+                    header("Location: home_page.php");
+                }
+                else{
+                    echo "Nu am gasit acest username cu aceasta parola ;(";
+                }
+                // header("Location: login_check.php");		
+                exit();
+            
+            }
+        }
     }
-    else{
-        echo "Nu am gasit acest username cu aceasta parola ;(";
-    }
-    // header("Location: login_check.php");		
-    exit();
-
 }
+
+////////////////////
+   
 mysqli_close($link);
 
 ?>

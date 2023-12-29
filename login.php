@@ -2,6 +2,7 @@
   <head>
     <link rel="stylesheet" href="home_page.css" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title>neverlanes login</title>
     <meta charset="utf-8">
     <meta name="autor" content="cristi">
@@ -38,12 +39,17 @@
               <td><INPUT TYPE="text" name="password"></td>
           </tr>
           <tr>
+            <td colspan="2" class ="captcha-container">
+          <div class="g-recaptcha" data-sitekey="6LcNjTwpAAAAALqWaouU89rRxpIV926v3Ck-ZTvM"></div>
+          </td>
+          </tr>
+          <tr>
             <td><INPUT TYPE="reset" VALUE="reset"></td>
             <td><INPUT TYPE="submit" VALUE="send"></td>
           </tr>
           
          </table>
-         </form>
+                  </form>
          
          <div class="harta">
           Don't have an account?
