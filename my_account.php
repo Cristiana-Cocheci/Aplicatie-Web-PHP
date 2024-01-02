@@ -123,6 +123,38 @@
          
       ?>
    </div>
+   <div id="tabel_users">
+   <?php
+      if($_SESSION['role']=="ADMIN"){
+         $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
+         if (!$link) {
+            echo "Error: Unable to connect to MySQL.";
+            exit;
+         }
+
+         $query = "SELECT * FROM CLIENTS ";
+         $result = $link->query($query);
+         print '<a> Client accounts number: '.$result->num_rows.'.</a><br>';
+           
+         foreach ($link->query($query) as $row) {
+            //print_r($row);
+            print "<ul>";
+            print '<li>Client ID:<br> ' . $row['client_id'] . '</li>';
+            print '<li>Username: ' . $row['username'] . '</li>';
+            print '<li>Name: ' . $row['first_name'] .' '.$row['last_name']. '</li>';
+            print '<li>Email: ' . $row['email'] . '</li>';
+            print '<li>Role: ' . $row['role'] . '</li>';
+            
+             print "</ul>";
+         }
+         
+        
+
+         mysqli_close($link);
+      }
+         
+      ?>
+   </div>
 </body>
 
 </html>

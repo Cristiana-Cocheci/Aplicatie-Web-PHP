@@ -67,3 +67,36 @@
   color: white;
   font-weight: bold;
 }
+
+/*********************/
+#tabel_users ul {
+  border: 1px solid #80d2b4;
+  margin: 1vi;
+  padding: 2vi;
+  width: 35vi; 
+  display: inline-block;
+  list-style: none;
+  background-color: #e1f8f4;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#tabel_users li {
+  padding: 0.6vi;
+  text-align: left;
+}
+
+#tabel_users li:nth-child(even) {
+  background-color: #d2f4ec;
+  color:#328675;
+}
+
+#tabel_users li:nth-child(odd) {
+  background-color: #e1f8f0;
+  color:#66bf97;
+}
+
+#tabel_users li:first-child {
+  background-color:  rgb(92, 204, 163);
+  color: white;
+  font-weight: bold;
+}

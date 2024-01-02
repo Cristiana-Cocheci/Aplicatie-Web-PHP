@@ -51,7 +51,7 @@
                         echo $query;
 
                         foreach ($link->query($query) as $row) {
-                            print '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                            print '<option value="' . $row['route_name'] . '">' . $row['route_name'] . '</option>';
                         }
                         
                         mysqli_close($link);
