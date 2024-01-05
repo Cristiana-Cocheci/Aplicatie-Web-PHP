@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="login.css" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <title>neverlanes login</title>
+    <title>neverlanes contact</title>
     <meta charset="utf-8">
     <meta name="autor" content="cristi">
     <meta name="description" content="pagina web?">
@@ -28,16 +28,41 @@
           </ul>
       </div>
     
-      <FORM method="POST" action="login_check.php">
+      <FORM method="POST" action="contact_check.php">
         <table border=0 width="40%" align="left">
+        <tr>
+        <tr>
+              <td>First Name*: </td>
+              <td><INPUT TYPE="text" name="first_name"></td>
+          </tr>
           <tr>
-              <td>Username*: </td>
+              <td>Last Name*: </td>
+              <td><INPUT TYPE="text" name="last_name"></td>
+          </tr>
+          <tr>
+              <td>Email*: </td>
+              <td><INPUT TYPE="email" name="email"></td>
+          </tr>
+            <td>Do you have an account?</td>
+            <td><select name="user?">
+                <option SELECTED VALUE="not_user">No account</option>
+                <option Value="user">I have an account</option>
+             </select>
+                </td>
+        </tr>
+          <tr>
+              <td>Username (if applicable): </td>
               <td><INPUT TYPE="text" name="username"></td>
           </tr>
           <tr>
-              <td>Password*: </td>
+              <td>Password (if applicable): </td>
               <td><INPUT TYPE="text" name="password"></td>
           </tr>
+         <tr>
+            <td>Message: </td>
+            <td><textarea id="w3review" name="message" rows="4" cols="50">Write your message here.</textarea></td>
+        </tr>
+        
           <tr>
             <td colspan="2" class ="captcha-container">
           <div class="g-recaptcha" data-sitekey="6LcNjTwpAAAAALqWaouU89rRxpIV926v3Ck-ZTvM"></div>

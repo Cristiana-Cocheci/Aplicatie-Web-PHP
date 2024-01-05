@@ -99,7 +99,7 @@ body {
     background-color: rgb(184, 241, 241);
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
-    grid-template-rows: 200px 50px 150px 500px ;
+    grid-template-rows: 200px 50px 350px 100px ;
     grid-template-areas:
         "header header header header header"
         "menu menu menu menu menu"
@@ -174,20 +174,6 @@ form {
     overflow: hidden;
     z-index: 0;
 }
-#harta #map {
-    width: 95%;
-    height: 90%;
-}
-
-
-.ol-viewport .ol-overlay-container, .ol-viewport .ol-overlay-container-stopevent {
-    z-index: 1;
-}
-.ol-attribution {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
 
 img{
     width:100%;
@@ -195,22 +181,3 @@ img{
     object-fit: scale-down;
 
 }
-
-.popup, #popup {
-    background-color: white;
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    white-space: nowrap;
-  }
-
-  .popup-closer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    cursor: pointer;
-  }
-  .secret_data{
-    display: none;
-  }
