@@ -60,7 +60,7 @@
           </tr>
          <tr>
             <td>Message: </td>
-            <td><textarea id="w3review" name="message" rows="4" cols="50">Write your message here.</textarea></td>
+            <td><textarea id="message" name="message" rows="4" cols="50">Write your message here.</textarea></td>
         </tr>
         
           <tr>
@@ -74,7 +74,7 @@
           </tr>
           
          </table>
-                  </form>
+                </form>
          
          <div class="harta">
           Don't have an account?

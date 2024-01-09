@@ -97,7 +97,7 @@
             <ul>
                 <li><a href="login.php">LOGIN</a></li>
                 <li><a href="my_account_check.php">MY ACCOUNT</a></li>
-                <li><a href="contact.php">CONTACT</li>
+                <li><a href="contact.php">CONTACT</a></li>
             </ul>
         </div>
       
