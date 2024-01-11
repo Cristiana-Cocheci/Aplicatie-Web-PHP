@@ -1,6 +1,5 @@
 <?php 
   
-echo $returnMsg;
 
 $servername = "mysql-neverlanes.alwaysdata.net";
 $username = "336043";
@@ -34,9 +33,10 @@ if(count($_POST)>0) {
              
             // Check if reCAPTCHA response returns success 
             if($verify_response->success){ 
-                
+                echo $password;
                 $username=$_POST['username'];
-                $password=$_POST['password'];
+                $password= md5($_POST['password']);
+                echo $password;
                 // echo $username;
                 // echo $password;
                 $query="select * from CLIENTS where UPPER(username) = UPPER('".$username."') and password = '".$password."';";

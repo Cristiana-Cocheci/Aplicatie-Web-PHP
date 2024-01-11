@@ -1,3 +1,10 @@
+<?php
+ require "header.php";
+   if(isset($_POST['download_EXCEL'])){
+      include_once 'exportexcel.php';
+      exportexcel($_SESSION['excel_data']);
+   }
+   ?>
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +30,7 @@
    <ul>
    <li><a href="logout.php">LOGOUT</a></li>
    <?php 
-        require "header.php";
+        
         if($_SESSION["username"]==-1){
             print '<li><a href="login.php">Want to login? Click here!</a></li>';
         }
@@ -123,16 +130,20 @@
          
       ?>
    </div>
+   <form method="post">
+      <input type="submit" name="download_EXCEL" value="Download clients data as excel file"/>
+   </form>
+   
    <div id="tabel_users">
    <?php
       if($_SESSION['role']=="ADMIN"){
-         $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
-         if (!$link) {
-            echo "Error: Unable to connect to MySQL.";
-            exit;
-         }
+         include_once 'DBconnect.php';
+         //require_once 'PhpXLsxGenerator.php';
+         $excel_fn = 'clients-data-'.date('d-m-Y').'.xlsx';
+         //nume coloane
+         $excelData[] = array('ID', 'USERNAME', 'FIRST NAME', 'LAST NAME', 'EMAIL', 'ROLE');
 
-         $query = "SELECT * FROM CLIENTS ";
+         $query = "SELECT * FROM CLIENTS ORDER BY client_id";
          $result = $link->query($query);
          print '<a> Client accounts number: '.$result->num_rows.'.</a><br>';
            
@@ -146,10 +157,16 @@
             print '<li>Role: ' . $row['role'] . '</li>';
             
              print "</ul>";
+             $excelData[] = array($row['client_id'], $row['username'], $row['first_name'], $row['last_name'], $row['email'], $row['role']);
+            /* $excelData[] = array("ID"=>$row['client_id'], "USERNAME"=>$row['username'], 
+            "FIRST_NAME"=>$row['first_name'], "LAST_NAME"=> $row['last_name'],
+            "EMAIL"=> $row['email'], "ROLE"=> $row['role']);*/
          }
          
-        
-
+        //print_r($excelData);
+        $_SESSION['excel_data']=$excelData;
+         // $xlsx = CodexWorld\PhpXlsxGenerator::fromArray( $excelData ); 
+         // $xlsx ->downloadAS($fileName);
          mysqli_close($link);
       }
          
