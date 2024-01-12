@@ -1,9 +1,10 @@
 <?php
  require "header.php";
-   if(isset($_POST['download_EXCEL'])){
+   if(isset($_POST['download_EXCEL_clients'])){
       include_once 'exportexcel.php';
       exportexcel($_SESSION['excel_data']);
    }
+   
    ?>
 <!DOCTYPE html>
 <html>
@@ -59,11 +60,7 @@
       <ul id="tabel_bilete">
         
       <?php
-            $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
-               if (!$link) {
-                  echo "Error: Unable to connect to MySQL.";
-                  exit;
-            }
+            include 'DBconnect.php';
 
             $query = "SELECT * FROM TICKETS t JOIN TICKETS_TYPES tt ON (t.type_id=tt.type_id) WHERE client_id ='".$_SESSION["client_id"]."';";
 
@@ -97,11 +94,7 @@
    <div id="tabel_trasee">
       <?php
       if($_SESSION['role']=="DRIVER"){
-         $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
-         if (!$link) {
-            echo "Error: Unable to connect to MySQL.";
-            exit;
-         }
+         include 'DBconnect.php';
 
          $query = "SELECT * FROM VEHICLES v JOIN ROUTES r ON (v.route_id=r.route_id)
                                             JOIN VEHICLE_TYPE vt ON (v.vehicle_type = vt.type_id)
@@ -130,22 +123,29 @@
          
       ?>
    </div>
-   <form method="post">
-      <input type="submit" name="download_EXCEL" value="Download clients data as excel file"/>
-   </form>
+   
    
    <div id="tabel_users">
    <?php
       if($_SESSION['role']=="ADMIN"){
-         include_once 'DBconnect.php';
+         print_r("<form method='post'>
+         <input type='submit' name='download_EXCEL_clients' value='Download clients data as excel file'/>
+      </form>");
+      print_r('<form action="import_excel.php" method="POST" enctype="multipart/form-data">
+
+      <input type="file" name="import_file" class="form-control" />
+      <button type="submit" name="save_excel_data" class="btn btn-primary mt-3">Import</button>
+
+  </form>');
+         include 'DBconnect.php';
          //require_once 'PhpXLsxGenerator.php';
          $excel_fn = 'clients-data-'.date('d-m-Y').'.xlsx';
          //nume coloane
          $excelData[] = array('ID', 'USERNAME', 'FIRST NAME', 'LAST NAME', 'EMAIL', 'ROLE');
 
          $query = "SELECT * FROM CLIENTS ORDER BY client_id";
-         $result = $link->query($query);
-         print '<a> Client accounts number: '.$result->num_rows.'.</a><br>';
+         $res = $link->query($query);
+         print '<a> Client accounts number: '.$res->num_rows.'.</a><br>';
            
          foreach ($link->query($query) as $row) {
             //print_r($row);

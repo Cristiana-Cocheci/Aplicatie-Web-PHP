@@ -1,20 +1,6 @@
 <?php 
   
-
-$servername = "mysql-neverlanes.alwaysdata.net";
-$username = "336043";
-$password = "m.2a*Z!#mV!9vWH";
-$dbname = "neverlanes_database";
-
-// Create connection
-
-// print_r($_POST);
-$link = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$link) {
-    echo "Error: Unable to connect to MySQL.";
-    exit;
-}
+include_once 'DBconnect.php';
 
 if(count($_POST)>0) {
     // Form fields validation check
@@ -33,15 +19,27 @@ if(count($_POST)>0) {
              
             // Check if reCAPTCHA response returns success 
             if($verify_response->success){ 
-                echo $password;
+
                 $username=$_POST['username'];
                 $password= md5($_POST['password']);
-                echo $password;
+               
                 // echo $username;
                 // echo $password;
-                $query="select * from CLIENTS where UPPER(username) = UPPER('".$username."') and password = '".$password."';";
-            
-                $result = $link->query($query);
+                $query="select * from CLIENTS where UPPER(username) = UPPER(?) and password = ?;";
+                // Prepare statement
+                $stmt = $link->prepare($query);
+
+                // Check if the statement is prepared successfully
+                if (!$stmt) {
+                    die("Error in preparing statement: " . $link->error);
+                }
+
+                // Bind parameters
+                $stmt->bind_param("ss", $username, $password);
+
+                // Execute the statement
+                $stmt->execute();
+                $result = $stmt->get_result();
                 //print_r ($result);
                 if($result->num_rows >0){
                     session_start();
@@ -53,18 +51,26 @@ if(count($_POST)>0) {
                     $_SESSION["email"]=$row['email'];
                     $_SESSION["role"]=$row['role'];
                     echo "OK!";
+                    $stmt->close();
                     header("Location: home_page.php");
                 }
                 else{
                     echo "Nu am gasit acest username cu aceasta parola ;(";
                 }
-                // header("Location: login_check.php");		
                 exit();
             
             }
         }
+        else{
+            header("login.php");
+        }
+    }
+    else{
+        header("login.php");
     }
 }
+    header("login.php");
+
 
 ////////////////////
    

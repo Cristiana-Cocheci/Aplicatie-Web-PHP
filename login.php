@@ -32,11 +32,11 @@
         <table border=0 width="40%" align="left">
           <tr>
               <td>Username*: </td>
-              <td><INPUT TYPE="text" name="username"></td>
+              <td><INPUT TYPE="text" name="username" pattern="[^'\x22]+"></td>
           </tr>
           <tr>
               <td>Password*: </td>
-              <td><INPUT TYPE="text" name="password"></td>
+              <td><INPUT TYPE="text" name="password" pattern="[^'\x22]+"></td>
           </tr>
           <tr>
             <td colspan="2" class ="captcha-container">

@@ -61,12 +61,8 @@
 }
             if(!isset($_SESSION['stops'])){
    
-                        $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
-
-                        if (!$link) {
-                            echo "Error: Unable to connect to MySQL.";
-                            exit;
-                        }
+                        include_once 'DBconnect.php';
+                       
 
                         $query = "SELECT * FROM ROUTES";
                         $route_names=[];
