@@ -91,9 +91,16 @@
                     ?>
         <div class="menu">
             <ul>
-                <li><a href="login.php">LOGIN</a></li>
-                <li><a href="my_account_check.php">MY ACCOUNT</a></li>
+                <?php
+                if(!isset($_SESSION['client_id'])){
+                    echo "<li><a href='login.php'>LOGIN</a></li>";
+                }
+                else{
+                    echo '<li><a href="my_account_check.php">MY ACCOUNT</a></li>';
+                }
+                ?>
                 <li><a href="contact.php">CONTACT</a></li>
+                <li><a href="stats.php">SITE STATS</a></li>
             </ul>
         </div>
       
@@ -104,8 +111,7 @@
                     <td>
                     <select name="route">
                         <?php
-                        $link = mysqli_connect("mysql-neverlanes.alwaysdata.net", "336043", "m.2a*Z!#mV!9vWH", "neverlanes_database");
-
+                        include "DBconnect.php";
                         if (!$link) {
                             echo "Error: Unable to connect to MySQL.";
                             exit;

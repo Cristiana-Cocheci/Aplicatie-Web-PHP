@@ -22,7 +22,29 @@ if(count($_POST)>0) {
 
                 $username=$_POST['username'];
                 $password= md5($_POST['password']);
-               
+                //check if th eclient can choose the password
+                $newcheck = "SELECT * from CLIENTS where UPPER(username) = UPPER(?);";
+                $stmt1 = $link->prepare($newcheck);
+
+                // Check if the statement is prepared successfully
+                if (!$stmt1) {
+                    die("Error in preparing statement: " . $link->error);
+                }
+
+                // Bind parameters
+                $stmt1->bind_param("s", $username);
+
+                // Execute the statement
+                $stmt1->execute();
+                $res = $stmt1->get_result();
+                if($res->num_rows >0){
+                    $row = $res->fetch_assoc();
+                    if($row['password'] == 'to_be_chosen'){
+                        echo "ceva";
+                        $u = "UPDATE CLIENTS SET password = '".$password."' where username = '".$username."';";
+                        $link->query($u);
+                    }
+                }
                 // echo $username;
                 // echo $password;
                 $query="select * from CLIENTS where UPPER(username) = UPPER(?) and password = ?;";
@@ -50,6 +72,9 @@ if(count($_POST)>0) {
                     $_SESSION["last_name"]=$row['last_name'];
                     $_SESSION["email"]=$row['email'];
                     $_SESSION["role"]=$row['role'];
+
+                    //date_default_timezone_set('Australia/Melbourne');
+                    $_SESSION['date_log_in'] = date('Y-m-d H:i:s', time());
                     echo "OK!";
                     $stmt->close();
                     header("Location: home_page.php");

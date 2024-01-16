@@ -114,7 +114,29 @@
             print '<li>Vehicle type: ' . $row['vehicle_name'] . '</li>';
             
              print "</ul>";
+             print '<FORM method="POST" action="change_stop.php">
+             <table>
+                 
+                 <tr>
+                     <td>
+                     <select name="stop">';
+                         $query = "SELECT stop_name, location_id FROM STOPS where route_id = ".$row['route_id'].";";
+                         $_SESSION['vehicle_id'] = $row['vehicle_id'];
+                         foreach ($link->query($query) as $row) {
+                             print '<option value="' . $row['location_id'] . '">' . $row['stop_name'] . '</option>';
+                         }
+ 
+               print '<option SELECTED VALUE="">Choose a stop!</option>
+                     </select>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td><INPUT TYPE="submit" VALUE="Update"></td>
+                 </tr>
+             </table>
+         </FORM>';
          }
+         
          
         
 

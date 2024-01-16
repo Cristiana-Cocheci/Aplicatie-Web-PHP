@@ -24,7 +24,6 @@
       <div class="menu">
           <ul>
               <li><a href="home_page.php">HOMEPAGE</a></li>
-              <li><a href="my_account_check.php">MY ACCOUNT</a></li>
           </ul>
       </div>
     
