@@ -23,11 +23,25 @@
 </head>
 
 <body>
+<div class="coloana" id="coloana1"><img src="coloana_stg.png" alt="greek column"></div>
+    <div class="pagina">
    <div class="header">
       <h1>
          NEVERLANES
       </h1>
+      
+   <div id="date_client">
+   <?php
+         if($_SESSION["username"]!=-1){
+            print '<a class ="client_data">Username: '.$_SESSION["username"].'</a>';
+            print '<a class ="client_data">Name: '.$_SESSION["first_name"].' '.$_SESSION["last_name"].'</a>';
+            print '<a class ="client_data">Account type: '.$_SESSION["role"].'</a>';
+           
+         }
+      ?>
    </div>
+   </div>
+   <div id="menu">
    <ul>
    <li><a href="logout.php">LOGOUT</a></li>
    <?php 
@@ -39,18 +53,9 @@
    ?>
    <li><a href="delete_acc.html">DELETE ACCOUNT</a></li>
    </ul>
+      </div>
    
-   <div id="date_client">
-   <?php
-         if($_SESSION["username"]!=-1){
-            print '<a class ="client_data">Username: '.$_SESSION["username"].'</a>';
-            print '<a class ="client_data">Name: '.$_SESSION["first_name"].' '.$_SESSION["last_name"].'</a>';
-            print '<a class ="client_data">Account type: '.$_SESSION["role"].'</a>';
-           
-         }
-      ?>
-   </div>
-   <div id="bilete">
+   <div class = 'stackable' id="bilete">
       <?php
          if($_SESSION["username"]!=-1){
             print "<p>Here are your tickets: </p>";
@@ -91,7 +96,7 @@
       ?>
       </ul>
    </div>
-   <div id="tabel_trasee">
+   <div class="stackable" id="tabel_trasee">
       <?php
       if($_SESSION['role']=="DRIVER"){
          include 'DBconnect.php';
@@ -147,7 +152,7 @@
    </div>
    
    
-   <div id="tabel_users">
+   <div class="stackable" id="tabel_users">
    <?php
       if($_SESSION['role']=="ADMIN"){
          print_r("<form method='post'>
@@ -194,6 +199,9 @@
          
       ?>
    </div>
+   </div>
+   <div class="coloana" id="coloana2"><img src="coloana_stg.png" alt="greek column"></div>
+    
 </body>
 
 </html>

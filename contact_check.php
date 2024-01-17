@@ -34,6 +34,7 @@ echo "ceva";
                 $user = $_POST["user?"];
                 $email = $_POST["email"];
                 $trimitem_mail=1;
+                $client_id=0;
                 if($user == "user"){
                     $username=$_POST['username'];
                     $password=$_POST['password'];
@@ -44,7 +45,7 @@ echo "ceva";
                     $result = $link->query($query);
                     //print_r ($result);
                     if($result->num_rows >0){
-                        
+                        $client_id = $_SESSION['client_id'];
                         echo "OK!";
                         //header("Location: home_page.php");
                     }
@@ -54,6 +55,15 @@ echo "ceva";
                     }
                 }
                 if($trimitem_mail==1){
+                    if($client_id ==0){
+                        $q = "INSERT INTO ACTION_LOGS (action_type) VALUES('sent contact form');";
+                        $link->query($q);
+                    }
+                    else{
+                        $q = "INSERT INTO ACTION_LOGS (client_id, action_type) VALUES(".$client_id.", 'sent contact form');";
+                        $link->query($q);
+                    }
+                   
                     echo "da?";
                     require_once('class.phpmailer.php');
                     require_once('mail_config.php');
@@ -92,7 +102,7 @@ echo "ceva";
                     }
                 }
                 echo "nu?";
-                // header("Location: login_check.php");		
+                header("Location: home_page.php");		
                 exit();
             
             

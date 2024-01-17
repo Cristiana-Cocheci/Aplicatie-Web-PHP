@@ -1,3 +1,80 @@
+<html>
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Display a map</title>
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+              <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+
+              <style>
+                body {
+                  margin: 0;
+                  padding: 0;
+                  display: flex;
+                   background-color: #9980d2;
+                }
+                #map{
+                  border: 2px solid #4B0082;
+                  margin: 1vi;
+                  padding: 2vi;
+                  width: 60%; 
+                  display: inline-block;
+                  list-style: none;
+                  background-color: #e7e1f8;
+                }
+#info ul{
+  overflow: scroll;
+  border: 2px solid #4B0082;
+  margin: 1vi;
+  padding: 2vi;
+  width: 40%; 
+  height:90%;
+  display: inline-block;
+  list-style: none;
+  background-color: #e7e1f8;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#info li {
+  padding: 0.6vi;
+  text-align: left;
+}
+
+#info li:nth-child(even) {
+  background-color: #ddd2f4;
+  color:#363286;
+}
+
+#info li:nth-child(odd) {
+  background-color: #e7e1f8;
+  color:#7b66bf;
+}
+
+#info li:first-child {
+  background-color:  rgb(96, 92, 204);
+  color: white;
+  font-weight: bold;
+}
+
+                
+                .popup, #popup {
+                    background-color: white;
+                    padding: 5px;
+                    border-radius: 5px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                    white-space: nowrap;
+                  }
+            
+                  .popup-closer {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    padding: 10px;
+                    cursor: pointer;
+                  }
+              </style>
+            </head>
+            <body>
 <?php
 
 function find_coordinates($adress){
@@ -16,7 +93,7 @@ function find_coordinates($adress){
         $longitude = $data['features'][0]['geometry']['coordinates'][0];
 
         // Output the coordinates
-        echo "Latitude: $latitude, Longitude: $longitude <br>";
+        echo "<li>Latitude: $latitude, Longitude: $longitude </li>";
         return [$longitude, $latitude];
     } else {
         // Handle the case where the request was not successful
@@ -50,20 +127,21 @@ if(count($_POST)>0) {
         }
 
         $row = $rez->fetch_assoc();
-        echo "Selected route: " . $selectedRoute . ". Length of route: " . $row['length']."<br>";
-        echo "Number of stops: ". $row['no_stops']."<br>";
+        echo '<div id="info"><ul>';
+        echo "<li>Selected route: " . $selectedRoute . ". Length of route: " . $row['length']."</li>";
+        echo "<li>Number of stops: ". $row['no_stops']."</li><li></li>";
         $route_id=$row['route_id'];
 
         $query2 = "SELECT * FROM STOPS s join LOCATIONS l on (l.location_id = s.location_id) where route_id = '".$route_id."' ORDER BY l.location_id;";
         $coordinates_array =[];
         $stop_names_array =[];
         foreach ($link->query($query2) as $row) {
-            echo  $row['stop_name']."<br>";
+            echo  "<li>".$row['stop_name']."</li>";
             array_push($stop_names_array, $row['stop_name']);
             //$coordinates = find_coordinates($row['adress']);
             array_push($coordinates_array,find_coordinates($row['adress']));
         }
-            print_r($coordinates_array);
+            echo '</ul></div>';//print_r($coordinates_array);
             $center_lat =0;
             $center_long =0;
             $stops =[];
@@ -76,44 +154,8 @@ if(count($_POST)>0) {
             $center_long/=sizeof($coordinates_array);
             
         // echo '<iframe width="1000" height="800" src="https://api.maptiler.com/maps/streets-v2/?key=CiOlVnwrxtBxK8VQfwEg#0.7/17.27178/2.91944markers=14.4,50.1,red|8.6,47.4,rgba(118,31,232,1)|2.4,48.9,%23ffaa00"></iframe>';
-            echo '<html>
-            <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Display a map</title>
-              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
-              <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
-              <style>
-                body {
-                  margin: 0;
-                  padding: 0;
-                }
-          
-                #map {
-                  position: absolute;
-                  top: 200px;
-                  right: 100px;
-                  bottom: 100px;
-                  left: 100px;
-                }
-                .popup, #popup {
-                    background-color: white;
-                    padding: 5px;
-                    border-radius: 5px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                    white-space: nowrap;
-                  }
+            echo '
             
-                  .popup-closer {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    padding: 10px;
-                    cursor: pointer;
-                  }
-              </style>
-            </head>
-            <body>
             <!-- Popup container -->
             <div id="popup" class="ol-popup">
             <a href="#" id="popup-closer" class="ol-popup-closer">×</a>
@@ -168,7 +210,8 @@ if(count($_POST)>0) {
                                         image: new ol.style.Icon({
                                             anchor: [0.5, 1],
                                             crossOrigin: "anonymous",
-                                            src: "marker-icon-medium.png",
+                                            src: "3-marker-icon.png",
+                                            size: [100, 100],
                                         })
                                 })
                             });
@@ -202,10 +245,9 @@ if(count($_POST)>0) {
                     return false;
                 };
 
-              </script>
+              </script>';
               
-            </body>
-          </html>';
+            
     } else {
         echo "No route selected.";
     }
@@ -216,4 +258,5 @@ if(count($_POST)>0) {
 mysqli_close($link);
 
 ?>
-
+</body>
+          </html>

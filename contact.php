@@ -10,7 +10,7 @@
     <meta name="keywords" content="neverlanes">
  </head>
  <body>
-  <div class="coloana" id="coloana1"><img src="coloana.png" alt="greek column"></div>
+  <div class="coloana" id="coloana1"><img src="coloana_stg.png" alt="greek column"></div>
   <div class="pagina">
       <div class="header">
           <h1>
@@ -83,7 +83,7 @@
   </div>
   
  <div class="coloana" id="coloana2">
-  <img src="coloana.png" alt="greek column">
+  <img src="coloana_stg.png" alt="greek column">
  </div>
 </body>
 

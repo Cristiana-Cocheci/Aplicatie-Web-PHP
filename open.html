@@ -36,10 +36,9 @@
       </p>
 
       <ul>
-          <li>Clientii se pot loga si pot "cumpara" bilete sau abonamente</li>
-          <li>Exista o harta a Orasului cu statiile si liniile existente, cu un click pe statii se pot afla informatii despre statie si despre cand soseste urmatorul vehicul.</li>
-          <li>Pe baza clickurilor pe statii, detinatorul aplicatiei va avea acces la stadiul de "aglomerare" al traseelor in fiecare zi</li>
-          
+          <li>Clientii se pot loga si isi pot vedea biletele sau abonamentele</li>
+          <li>Exista o harta a Lumii cu statiile si liniile existente, cu un click pe statii se pot afla informatii despre statie.</li>
+                    
       </ul>
   </div>
   <div>
@@ -56,7 +55,10 @@
        <li><b>SOFERI:</b>nume, prenume, salariu, id_client (NULL)</li>
        <li><b>STATII:</b> locatie, statie precedenta, statie urmatoare, capat1 traseu, capat2 traseu</li>
        <li><b>VIZITARE_STATIE:</b> statie, data vizitarii, ora vizitarii</li>
-       
+       <li><b>TRASEE:</b> nume, dimensiune, nr. statii</li>
+       <li><b>LOCATII:</b> nume, adresa</li>
+       <li><b>ACTION_LOGS:</b> tip actiune, data</li>
+
    </ul>
 </div>
 <div>
@@ -66,10 +68,11 @@
    
    <ul>
        <li>se poate creea un cont printr-un formular, asa apare un client nou in baza de date</li>
-       <li>atunci cand o statie este accesata, aceasta informatie e transmisa catre baza de date</li>
-       <li>la un interval de timp setat, in timpul activitatii site-ului, locatiile autobuzelor trebuie modificate in baza de date</li>
-       <li>timpul in care urmatorul autobuz ajunge in statie este determinat printr-un query in baza de date asupra tabelului de vehicule</li>
-       <li>adminul poate adauga statii, modifica trasee, etc</li>
+       <li>conturile sunt de trei tipuri: client, sofer si administrator; numai o lista predefinita poate avea cont de admin</li>
+       <li>se poate contacta detinatorul aplicatiei printr-un formular de email</li>
+       <li>harta si locatiile de pe harta sunt calculate in mod dinamic la incarcarea paginii</li>
+       <li>soferii pot modifica statia la care se afla din aplicatie</li>
+       <li>adminul poate adauga vedea lista de clienti, o poate exporta si poate importa printr-un excel o lista noua de clienti, fara parole, acestea urmand sa fie adaugate ulterior</li>
        
    </ul>
 </div>

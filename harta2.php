@@ -79,7 +79,7 @@
                         image: new ol.style.Icon({
                             anchor: [0.5, 1],
                             crossOrigin: "anonymous",
-                            src: 'marker-icon-medium.png',//route+'-marker-icon.png',
+                            src: route+'-marker-icon.png',//'marker-icon-medium.png',//route+'-marker-icon.png',
                             size: [40, 40],
                         })})});
                 console.log(styles);

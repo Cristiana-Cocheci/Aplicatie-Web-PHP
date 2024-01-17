@@ -14,6 +14,14 @@ if (!$link) {
     exit;
 }
 
+function is_admin_email($email, $link){
+    $q = 'SELECT email from ADMIN_EMAIL where email = "'.$email.'";';
+    $result = $link->query($q);
+    if($result->num_rows >0){
+        return 1;
+    }
+    return 0;
+}
 
 
 if(count($_POST)>0) {
@@ -69,9 +77,14 @@ if(count($_POST)>0) {
                         //nu poti sa ai direct cont de sofer
                         header("Location: login.php");
                     }
-                    $q2="insert into CLIENTS(username,first_name,last_name,email,password,role) values('".$username."','".$fname."','".$lname."','".$email."','".$password."','".$acc_type."');";
-                    $link->query($q2);
-                    header("Location: login.php");
+                    else if(is_admin_email($email, $link) || $acc_type!="ADMIN"){
+
+                        $q2="insert into CLIENTS(username,first_name,last_name,email,password,role) values('".$username."','".$fname."','".$lname."','".$email."','".$password."','".$acc_type."');";
+                        $link->query($q2);
+                        header("Location: login.php");
+
+                    }
+                    
                 }
                 // header("Location: login_check.php");		
                 exit();

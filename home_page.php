@@ -21,7 +21,7 @@
 <body>
     <!-- Popup container -->
     
-    <div class="coloana" id="coloana1"><img src="coloana.png" alt="greek column"></div>
+    <div class="coloana" id="coloana1"><img src="coloana_stg.png" alt="greek column"></div>
     <div class="pagina">
         <div class="header">
             <h1>
@@ -148,7 +148,7 @@
         </div>
     </div>
    <div class="coloana" id="coloana2">
-    <img src="coloana.png" alt="greek column">
+    <img src="coloana_stg.png" alt="greek column">
    </div>
 </body>
 
